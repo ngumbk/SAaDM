@@ -4,8 +4,6 @@ import re
 
 # returns the list of nodes and their relation
 def task(csv_string):
-    result = []
-
     # making adjacency list out of edge list
     graph_nodes = re.findall(r'\d+', csv_string)
     for i in range(len(graph_nodes)):
@@ -27,17 +25,22 @@ def task(csv_string):
         if len(graph[key]) > 0:
             r1.append(key)
         for exit_node in graph[key]:
-            if exit_node not in r2:
-                r2.append(exit_node)
+            if int(exit_node) not in r2:
+                r2.append(int(exit_node))
 
-    print(r1, r2, sep='\n')
     for i in r1:
+        if len(graph[i]) > 1:
+            for exit_node in graph[i]:
+                if int(exit_node) not in r5:
+                    r5.append(int(exit_node))
         for exit_node_1 in graph[i]:
-            print(exit_node_1, end=' ')
+            for exit_node_2 in graph[int(exit_node_1)]:
+                if i not in r3:
+                    r3.append(i)
+                if int(exit_node_2) not in r4:
+                    r4.append(int(exit_node_2))
 
-        print('\n')
-    
-    return result
+    return [r1, r2, r3, r4, r5]
 
 
 def main():
