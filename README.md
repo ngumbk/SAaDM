@@ -1,1 +1,1 @@
-# Systam Analysis and Decision Making (SAaDM)
+# System Analysis and Decision Making (SAaDM)
